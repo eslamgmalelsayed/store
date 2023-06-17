@@ -24,8 +24,8 @@ export const useStore = defineStore("shop", {
   actions: {
     // fetchData
     async fetchData() {
-      const getCashedItems = JSON.parse(localStorage.getItem("items")) ;
-      const getCashedCartItems = JSON.parse(localStorage.getItem("cartItems")) ;
+      const getCashedItems = JSON.parse(localStorage.getItem("items"));
+      const getCashedCartItems = JSON.parse(localStorage.getItem("cartItems"));
       if (getCashedCartItems.length) {
         this.cartItems = getCashedCartItems;
       }
@@ -33,7 +33,9 @@ export const useStore = defineStore("shop", {
         this.items = getCashedItems;
       } else {
         try {
-          const response = await axios.get("https://fakestoreapi.com/products?limit=11");
+          const response = await axios.get(
+            "https://fakestoreapi.com/products?limit=11"
+          );
           this.items = await response.data;
           localStorage.setItem("items", JSON.stringify(this.items));
         } catch (error) {
@@ -43,13 +45,16 @@ export const useStore = defineStore("shop", {
     },
     // addToCart
     addToCart(item) {
-    this.cartItems.push(item);
-    localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+      this.cartItems.push(item);
+      localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
     },
     // removeFromCart
     removeFromCart(itemId) {
-      this.cartItems = this.cartItems.filter(item => item.id != itemId);
+      this.cartItems = this.cartItems.filter((item) => item.id != itemId);
       localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+    },
+    test() {
+      console.log("commited test");
     },
   },
 });
