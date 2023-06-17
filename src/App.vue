@@ -16,6 +16,6 @@ import TheNavbar from './components/TheNavbar.vue'
     font-family: 'Roboto Mono', monospace;
   }
   img{
-  object-fit: contain ;
+  object-fit: contain;
   }
 </style>
